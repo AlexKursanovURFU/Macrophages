@@ -1,18 +1,6 @@
-dshjgfsdj
-gds
-gf
-dsg
+import math
 
-sortedg
-sdg
-sortedgsd
-globalsd
-globalg
-ZeroDivisionErrorsd
-globals
+x = 1
+y = cos(x)
 
-fgdsfsdfsfs
-Falsef
-ZeroDivisionErrorsd
-finallydf
-sd
+print(y)
