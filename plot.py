@@ -2,14 +2,7 @@ dshjgfsdj
 gds
 gf
 dsg
-sortedg
-dsg
-sdg
-sdg
-sortedg
-sdg
-sortedgsd
-globalsdg
+
 sortedg
 sdg
 sortedgsd
@@ -17,3 +10,9 @@ globalsd
 globalg
 ZeroDivisionErrorsd
 globals
+
+fgdsfsdfsfs
+Falsef
+ZeroDivisionErrorsd
+finallydf
+sd
