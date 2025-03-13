@@ -1,18 +1,7 @@
-dshjgfsdj
-gds
-gf
-dsg
+import math
 
-sortedg
-sdg
-sortedgsd
-globalsd
-globalg
-ZeroDivisionErrorsd
-globals
+x = 5
 
-fgdsfsdfsfs
-Falsef
-ZeroDivisionErrorsd
-finallydf
-sd
+y = math.tan(x)
+
+print(y)
