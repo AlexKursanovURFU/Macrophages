@@ -1,6 +1,6 @@
 import math
 
 x = 1
-y = cos(x)
+y = math.cos(x)
 
 print(y)
