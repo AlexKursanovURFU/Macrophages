@@ -8,7 +8,12 @@
 		"ghcr.io/devcontainers-extra/features/coverage-py:2": {}
 	},
 
-	"postCreateCommand": "python3 -m venv .venv"
+	"postCreateCommand": "python3 -m venv .venv",
+
+	"settings": {
+    	"python.terminal.activateEnvInCurrentTerminal": true,
+    	"python.defaultInterpreterPath": ".venv/bin/python"
+	}
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
