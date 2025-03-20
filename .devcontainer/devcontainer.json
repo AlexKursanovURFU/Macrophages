@@ -1,4 +1,6 @@
 {
-  "image": "ghcr.io/devcontainers/features/conda:1",
-  "features": {}
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    }
 }
