@@ -5,14 +5,9 @@
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/python:1-3.12-bullseye",
 	"features": {
-		"ghcr.io/devcontainers-extra/features/coverage-py:2": {}
-	},
-
-	"postCreateCommand": "python3 -m venv .venv",
-
-	"settings": {
-    	"python.terminal.activateEnvInCurrentTerminal": true,
-    	"python.defaultInterpreterPath": ".venv/bin/python"
+		"ghcr.io/devcontainers-extra/features/coverage-py:2": {},
+		"ghcr.io/devcontainers-extra/features/black:2": {},
+		"ghcr.io/devcontainers-extra/features/flake8:2": {}
 	}
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
