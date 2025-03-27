@@ -1,7 +1,9 @@
 from scipy.integrate import odeint
 from parameters import initConsts
 from model import computeRates
-from parameters import (sizeStates, sizeConstants)
+
+sizeStates = 29
+sizeConstants = 58
 
 def solve_model(
     simulation_time=20.0, 
