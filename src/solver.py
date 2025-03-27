@@ -36,7 +36,7 @@ def solve_model(
         
         # Инициализация параметров модели
         if constants is None or initial_states is None:
-            default_states, default_constants = initConsts()
+            default_states, default_constants = init_consts()
             if constants is None:
                 constants = default_constants
             if initial_states is None:
