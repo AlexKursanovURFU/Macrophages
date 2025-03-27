@@ -1,5 +1,5 @@
 from scipy.integrate import odeint
-from parameters import initConsts
+from parameters import init_consts
 from model import computeRates
 
 sizeStates = 29
