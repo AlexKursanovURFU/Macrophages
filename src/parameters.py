@@ -21,6 +21,7 @@ def create_legends():
         "g_f": "g_f in component hyperpolarising_activated_current (microS)",
         "ACh": "ACh in component acetylcholine_sensitive_current (millimolar)",
         "g_Kr": "g_Kr in component rapid_delayed_rectifier_potassium_current (microS)",
+        "E_K_1": "E_K_1 in component transient_outward_potassium_current (millivolt)",
         "E_K": "E_K in component rapid_delayed_rectifier_potassium_current (millivolt)",
         "Ki": "Ki in component intracellular_potassium_concentration (millimolar)",
         "Kc": "Kc in component extracellular_potassium_concentration (millimolar)",
@@ -30,6 +31,8 @@ def create_legends():
         "I_p": "I_p in component sodium_potassium_pump (nanoA)",
         "Nai": "Nai in component intracellular_sodium_concentration (millimolar)",
         "kNaCa": "kNaCa in component sodium_calcium_exchange_current (nanoA)",
+        "k34": "k34 in component sodium_calcium_exchange_current (dimensionless)",
+        "k43": "k43 in component sodium_calcium_exchange_current (dimensionless)",
         "Qci": "Qci in component sodium_calcium_exchange_current (dimensionless)",
         "Qn": "Qn in component sodium_calcium_exchange_current (dimensionless)",
         "Qco": "Qco in component sodium_calcium_exchange_current (dimensionless)",
@@ -47,6 +50,8 @@ def create_legends():
         "g_Na": "g_Na in component fast_sodium_current (microlitre_per_second)",
         "E_Na": "E_Na in component fast_sodium_current (millivolt)",
         "delta_m": "delta_m in component fast_sodium_current_m_gate (millivolt)",
+        "g_Cal": "g_CaL in component L_type_calcium_current (microS)",
+        "E_CaL": "E_CaL in component L_type_calcium_current (millivolt)",
         "act_shift": "act_shift in component L_type_calcium_current_d_gate (millivolt)",
         "slope_factor_act": "slope_factor_act in component L_type_calcium_current_d_gate (millivolt)",
         "inact_shift": "inact_shift in component L_type_calcium_current_f_gate (millivolt)",
@@ -133,11 +138,11 @@ def create_legends():
         "x3": "x3 in component sodium_calcium_exchange_current (dimensionless)",
         "x4": "x4 in component sodium_calcium_exchange_current (dimensionless)",
         "k41": "k41 in component sodium_calcium_exchange_current (dimensionless)",
-        "k34": "k34 in component sodium_calcium_exchange_current (dimensionless)",
+        #"k34": "k34 in component sodium_calcium_exchange_current (dimensionless)",
         "k23": "k23 in component sodium_calcium_exchange_current (dimensionless)",
         "k21": "k21 in component sodium_calcium_exchange_current (dimensionless)",
         "k32": "k32 in component sodium_calcium_exchange_current (dimensionless)",
-        "k43": "k43 in component sodium_calcium_exchange_current (dimensionless)",
+        #"k43": "k43 in component sodium_calcium_exchange_current (dimensionless)",
         "k12": "k12 in component sodium_calcium_exchange_current (dimensionless)",
         "k14": "k14 in component sodium_calcium_exchange_current (dimensionless)",
         "do": "do in component sodium_calcium_exchange_current (dimensionless)",
@@ -201,54 +206,87 @@ def init_consts():
     """
     # Инициализация констант
     constants = {
-        "R": 8314.472,          # Универсальная газовая постоянная (J/(mol*K))
-        "T": 310,               # Температура (K)
-        "F": 96485.3415,        # Число Фарадея (C/mol)
-        "Cm": 4e-5,             # Емкость мембраны (F)
-        "V_cell": 0.001,        # Объем клетки (L)
-        "Na_o": 140,            # Наружная концентрация Na+ (mM)
-        "K_o": 5.4,             # Наружная концентрация K+ (mM)
-        "Ca_o": 2,              # Наружная концентрация Ca2+ (mM)
-        "Na_i": 10,             # Внутренняя концентрация Na+ (mM)
-        "K_i": 140,             # Внутренняя концентрация K+ (mM)
-        "Ca_i": 0.0001,         # Внутренняя концентрация Ca2+ (mM)
-        "Km_Ca": 0.0005,        # Константа Михаэлиса для Ca2+ (mM)
-        "P_NaC": 3.18872e-6,    # Проницаемость Na+/Ca2+ обменника
-        "g_Na_factor": 0.0116,  # Коэффициент для g_NaC
-        "g_K_factor": 0.0012,   # Коэффициент для g_K
-        "g_Ca_factor": 0.01,    # Коэффициент для g_Ca
+        "R": 8314.472,          
+        "T": 310,               
+        "F": 96485.3415,       
+        "C": 4e-5,             
+        "g_f": 0.001,
+        "ACh": 0,
+        "g_Kr": 0.0035,
+        "Ki": 140,             
+        "Kc": 5.4,             
+        "g_K1": 0,
+        "g_b": 0.0012,
+        'E_b': -22.5,
+        "I_p": 0.14268,
+        "Nai": 8,
+        "kNaCa": 2.14455,
+        "Qci": 0.1369,
+        "Qn": 0.4315,
+        "Qco": 0,
+        "Kci": 0.0207,
+        "K1ni": 395.3,
+        "K2ni": 2.289,
+        "K3ni": 26.44,
+        "Kcni": 26.44,
+        "K3no": 4.663,
+        "K1no": 1628,
+        "K2no": 561.4,
+        "Kco": 3.663,
+        "Cao": 2,
+        "Nao": 140,
+        "g_Na": 0,
+        "delta_m": 1e-5,
+        "g_CaL": 0.009,
+        "E_CaL": 62,
+        "act_shift": -15,
+        "slope_factor_act": -5,
+        "inact_shift": -5,
+        "inact_shift_f2": -5,
+        "g_to": 0,
+        "E_st": -37.4,
+        "g_st": 0.0001,
+        "g_Ach_max": 0.0198,
+        "K_ACh": 0.00035,
+        "alpha_achf": 73.1,
+        "alpha_achs": 3.7,
+        "V_cell": 3.18872e-6,
+        "P_rel": 1500,
+        "K_up": 0.0006,
+        "tau_tr": 0.06,
     }
 
     # Инициализация состояний
     states = {
-        "V": -49.7094187908202,  # Мембранный потенциал (mV)
-        "m": 0.0462303183096481, # Активация Na+ каналов
-        "h": 0.192515363116553,  # Инактивация Na+ каналов
-        "j": 0.0797182955833868, # Инактивация Na+ каналов
-        "X_kr": 0.949023698965401, # Активация быстрых K+ каналов
-        "Ca_i": 0.000160310601192365, # Внутренняя концентрация Ca2+
-        "f_Ca": 0.143642247226618, # Доля активных Ca2+ каналов
-        "d": 0.0243210273637729, # Активация L-типа Ca2+ каналов
-        "f": 0.0157156121147801, # Инактивация L-типа Ca2+ каналов
-        "X_ks": 0.00179250298710316, # Активация медленных K+ каналов
-        "X_to": 0.975550840189597, # Активация транзиторных K+ каналов
-        "Y_to": 0.774394220125623, # Инактивация транзиторных K+ каналов
-        "R_prime": 0.0296516611999521, # Временная переменная для Na+/K+ насоса
-        "s": 0.899732315818241,  # Активация Na+/K+ насоса
-        "r": 0.190111737767474,  # Инактивация Na+/K+ насоса
-        "Nai_m": 0.476404610622697, # Внутренняя концентрация Na+ в митохондриях
-        "Ki_m": 0.542303657353244, # Внутренняя концентрация K+ в митохондриях
-        "Ca_m": 0.550559577208797, # Внутренняя концентрация Ca2+ в митохондриях
-        "ADP_m": 0.567277036232041, # Концентрация ADP в митохондриях
-        "ATP_m": 1.11092514657408, # Концентрация ATP в митохондриях
-        "Pi_m": 0.296249516481577, # Концентрация неорганического фосфата в митохондриях
-        "Dpsi_m": 0.0356473236675985, # Митохондриальный мембранный потенциал
-        "pH_m": 0.443317425115817, # pH в митохондриях
-        "G_H": 0.491718960234865, # Проводимость H+ каналов
-        "G_Na": 0.0723007987059414, # Проводимость Na+ каналов
-        "G_K": 0.0630771339141488, # Проводимость K+ каналов
-        "G_Ca": 0.261430602900137, # Проводимость Ca2+ каналов
-        "J_ANT": 4.1497704886823e-5, # Поток через ANT (аденозин-нуклеотидный транслоказ)
+        "V": -49.7094187908202,
+        "y": 0.0462303183096481,
+        "paf": 0.192515363116553,
+        "pas": 0.0797182955833868,
+        "pik": 0.949023698965401,
+        "Casub": 0.000160310601192365,
+        "m": 0.143642247226618,
+        "h1": 0.0243210273637729,
+        "h2": 0.0157156121147801,
+        "d": 0.00179250298710316,
+        "f": 0.975550840189597,
+        "f2": 0.774394220125623,
+        "r": 0.0296516611999521,
+        "q_fast": 0.899732315818241,
+        "q_slow": 0.190111737767474,
+        "qa": 0.476404610622697,
+        "qi": 0.542303657353244,
+        "achf": 0.550559577208797,
+        "achs": 0.567277036232041,
+        "Cai": 0.000184969821581882,
+        "Ca_up": 1.11092514657408,
+        "Ca_rel": 0.296249516481577,
+        "f_TC": 0.0356473236675985,
+        "f_TMC": 0.443317425115817,
+        "f_TMM": 0.491718960234865,
+        "f_CMi": 0.0723007987059414,
+        "f_CMs": 0.0630771339141488,
+        "f_CQ": 0.261430602900137, 
+        "f_CSL": 4.1497704886823e-5,
     }
 
     # Вычисление производных констант
@@ -261,21 +299,16 @@ def compute_derived_constants(constants):
     """
     Вычисляет производные константы на основе базовых значений.
     """
-    # RT/F (мВ)
-    constants["RT_F"] = (constants["R"] * constants["T"]) / constants["F"]
-
-    # Равновесные потенциалы для ионов (мВ)
-    constants["E_Na"] = constants["RT_F"] * log(constants["Na_o"] / constants["Na_i"])
-    constants["E_K"] = constants["RT_F"] * log(constants["K_o"] / constants["K_i"])
-    constants["E_Ca"] = constants["RT_F"] * log(constants["Ca_o"] / constants["Ca_i"])
-
-    # Доля активных Ca2+ каналов
-    constants["f_Ca"] = constants["Ca_i"] / (constants["Km_Ca"] + constants["Ca_i"])
-
-    # Проводимости каналов
-    constants["g_NaC"] = constants["g_Na_factor"] * constants["P_NaC"]
-    constants["g_K"] = constants["g_K_factor"] * constants["P_NaC"]
-    constants["g_Ca"] = constants["g_Ca_factor"] * constants["P_NaC"]
+    constants["RTONF"] = (constants["R"] * constants["T"]) / constants["F"]
+    constants["k34"] = constants["Nao"] / (constants["K3no"] + constants["Nao"])
+    constants["E_K"] = constants["RTONF"] * log(constants["Kc"] / constants["Ki"])
+    constants["E_Na"] = constants["RTONF"] * log(constants["Nao"] / constants["Nai"])
+    constants["E_K_1"] = constants["RTONF"] * log(constants["Kc"] / constants["Ki"])
+    constants["k43"] = constants["Nai"] / (constants["K3ni"] + constants["Nai"])
+    constants["V_up"] = 0.0116000 * constants["V_cell"]
+    constants["V_rel"] = 0.00120000 * constants["V_cell"]
+    constants["V_sub"] = 0.0100000 * constants["V_cell"]
+    constants["Vi"] = 0.460000 * constants["V_cell"] - constants["V_sub"]
 
     return constants
 
