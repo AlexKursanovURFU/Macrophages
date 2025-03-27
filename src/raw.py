@@ -302,7 +302,7 @@ def initConsts():
     constants[57] = 0.460000*constants[44]-constants[56]
     return (states, constants)
 
-def computeRates(voi, states, constants):
+def computeRates(states, voi, constants):
     rates = [0.0] * sizeStates; algebraic = [0.0] * sizeAlgebraic
     algebraic[15] = 120.000/(1.00000+exp(-(states[0]+50.0000)/15.0000))
     rates[17] = constants[42]*(1.00000-states[17])-algebraic[15]*states[17]
@@ -514,7 +514,7 @@ def solve_model():
     (init_states, constants) = initConsts()
 
     # Set timespan to solve over
-    voi = linspace(0, 10, 5000)
+    voi = linspace(0, 20, 10000)
 
     # Construct ODE object to solve
     r = ode(computeRates)
@@ -547,5 +547,19 @@ def plot_model(voi, states, algebraic):
     pylab.show()
 
 
-(voi, states, algebraic) = solve_model()
-plot_model(voi, states, algebraic)
+#(voi, states, algebraic) = solve_model()
+#plot_model(voi, states, algebraic)
+
+def solve_model():
+    """Solve model with ODE solver"""
+    from scipy.integrate import odeint
+
+    # Initialise constants and state variables
+    (init_states, constants) = initConsts()
+
+    # Set timespan to solve over
+    voi = linspace(0, 20, 10000)
+
+    resalt = odeint(func=computeRates, y0=init_states, t=voi, args=(constants,))
+
+solve_model()
